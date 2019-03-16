@@ -92,14 +92,16 @@ def process_args(argv, require_input=True):
                       4: log property definitions and usage on all levels"""))
 
     # process substitution args
-    try:
-        from rosgraph.names import load_mappings, REMAP
-        mappings = load_mappings(argv)
-        filtered_args = [a for a in argv if REMAP not in a]  # filter-out REMAP args
-    except ImportError as e:
-        warning(e)
-        mappings = {}
-        filtered_args = argv
+    # try:
+    #     from rosgraph.names import load_mappings, REMAP
+    #     mappings = load_mappings(argv)
+    #     filtered_args = [a for a in argv if REMAP not in a]  # filter-out REMAP args
+    # except ImportError as e:
+    #     warning(e)
+    #     mappings = {}
+    #     filtered_args = argv
+    mappings = {}
+    filtered_args = argv
 
     parser.set_defaults(just_deps=False, just_includes=False, verbosity=1)
     (options, pos_args) = parser.parse_args(filtered_args)
